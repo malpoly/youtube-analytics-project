@@ -39,7 +39,7 @@ class Channel:
     @classmethod
     def get_service(cls):
         """класс-метод `get_service()`, возвращающий объект для работы с YouTube API"""
-        print(build('youtube', 'v3', developerKey=api_key))
+        return build('youtube', 'v3', developerKey=api_key)
 
     def to_json(self, name_json):
         """метод `to_json()`, сохраняющий в файл значения атрибутов экземпляра `Channel`"""
