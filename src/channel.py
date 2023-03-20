@@ -25,7 +25,28 @@ class Channel:
         for i in channel['items']:
             self.view_count = i['statistics']['viewCount'] #количество просмотров
         for i in channel['items']:
-            self.subscriber_count = i['statistics']['subscriberCount']  # количество подписчиков
+            self.subscriber_count = int(i['statistics']['subscriberCount'])  # количество подписчиков
+
+    def __str__(self):
+        """Выводит данные в формате: <название_канала> (<ссылка_на_канал>)"""
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """Складывает количество подписчиков двух каналов"""
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other):
+        """Вычитает количество подписчиков двух каналов"""
+        return self.subscriber_count - other.subscriber_count
+
+    def __isub__(self, other):
+        """Вычитает количество подписчиков двух каналов с минусом"""
+        return self.subscriber_count - other.subscriber_count
+
+    def __ge__(self, other):
+        """Сравнивает количество подписчиков. Возвращает True, если в певром их больше"""
+        return self.subscriber_count > other.subscriber_count
+
 
     @property
     def channel_id(self):
